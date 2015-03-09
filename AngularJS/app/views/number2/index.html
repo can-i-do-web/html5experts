@@ -1,0 +1,62 @@
+<div class="jumbotron">
+  <h3>第2回 AngularJS の強力なフォームバリデーション</h3>
+</div>
+
+<div class="row marketing">
+  <form>
+    <div class="form-group">
+      <label for="demo1">必須チェック</label>
+      <input type="text" id="demo1" class="form-control" ng-model="demoModel" ng-required="true">
+    </div>
+    <div class="form-group">
+      <label for="demo2">文字数チェック</label>
+      <input type="text" id="demo2" class="form-control" ng-model="demoModel2" ng-maxlength="4">
+    </div>
+  </form>
+</div>
+<hr>
+<div class="row marketing">
+  <form name="demoForm" novalidate>
+    <div class="form-group">
+      <label for="demo3">必須チェック</label>
+      <input type="text" id="demo3" name="input3" class="form-control" ng-model="demoModel3" ng-required="true">
+      <p ng-show="demoForm.input3.$error.required">入力必須です</p>
+    </div>
+
+    <div class="form-group">
+      <label for="demo4">文字数チェック</label>
+      <input type="text" id="demo4" name="input4" class="form-control" ng-model="demoModel4" ng-maxlength="4">
+      <p ng-show="demoForm.input4.$error.maxlength">4文字までです</p>
+    </div>
+
+    <p>demoForm.input3.$error : {{ demoForm.input3.$error | json }}</p>
+    <p>demoForm.input4.$error : {{ demoForm.input4.$error | json }}</p>
+  </form>
+</div>
+<hr>
+<div class="row marketing">
+  <form name="demoForm2" novalidate>
+    <div class="form-group">
+      <label for="demo5">複数</label>
+      <input type="text" id="demo5" name="input5" class="form-control"
+        ng-model="demoModel5" ng-required="true" ng-minlength="4" ng-pattern="/^[0-9]+$/">
+      <p ng-show="demoForm2.input5.$error.required">入力必須です</p>
+      <p ng-show="demoForm2.input5.$error.minlength">4文字以上です</p>
+      <p ng-show="demoForm2.input5.$error.pattern">半角数値のみです</p>
+      <p>demoForm2.input5.$error : {{ demoForm2.input5.$error }}</p>
+    </div>
+
+    <div class="form-group validation">
+      <label for="demo6">複数</label>
+      <input type="text" id="demo6" name="input6" class="form-control"
+        ng-model="demoModel6" ng-required="true" ng-minlength="4" ng-pattern="/^[0-9]+$/">
+      <p ng-show="demoForm2.input6.$invalid">4文字以上の半角数字のみ（必須）</p>
+    </div>
+  </form>
+
+  <style type="text/css">
+    .validation .ng-invalid.ng-dirty{
+        border: solid 1px red;
+    }
+  </style>
+</div>
